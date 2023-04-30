@@ -1,21 +1,25 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${config:idfFolder}/**",
-                "${config:idfInstFolder}/tools/xtensa-esp32-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32-elf/**"
+                "~/esp/esp-idf/components/**",
+                "${config:esp_elf_bin}/../**",
+                "${env:HOME}/esp/esp-idf/components/freertos/port/xtensa/include/freertos/**",
+                "${env:HOME}/esp/esp-idf/components/xtensa/esp32/include/**",
+                "${env:IDF_PATH}/components/**",
+                "${env:IDF_PATH}/components/freertos/include",
+                "${env:IDF_PATH}/components/freertos/port/esp32/include"
             ],
             "defines": [],
-            "macFrameworkPath": [],
-            "compilerPath": "${config:idfInstFolder}/tools/xtensa-esp32-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-cpp",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",
-            "cppStandard": "gnu++14",
-            "intelliSenseMode": "macos-gcc-x64",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
+
     ],
     "version": 4
 }
