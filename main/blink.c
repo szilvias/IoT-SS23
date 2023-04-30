@@ -5,7 +5,9 @@
 #include "sdkconfig.h"
 #include "esp_log.h"
 
-#define BLINK_GPIO CONFIG_BLINK_GPIO
+#define BLINK_GPIO_Blue 18
+#define BLINK_GPIO_Green 17
+#define BLINK_GPIO_Red 16
 
 static const char *TAG = "BLINK";
 
@@ -13,17 +15,31 @@ void app_main(void){
 	//esp_log_level_set("BLINK", ESP_LOG_ERROR);       
 	esp_log_level_set("BLINK", ESP_LOG_INFO);       
 	
-	ESP_ERROR_CHECK(gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT));
+	ESP_ERROR_CHECK(gpio_set_direction(BLINK_GPIO_Red, GPIO_MODE_OUTPUT));
+	ESP_ERROR_CHECK(gpio_set_direction(BLINK_GPIO_Green, GPIO_MODE_OUTPUT));
+	ESP_ERROR_CHECK(gpio_set_direction(BLINK_GPIO_Blue, GPIO_MODE_OUTPUT));
 
 	while(1) {
-        /* Blink on (output low) */
-		ESP_LOGI(TAG, "Turning on the LED");
-		ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO, 0));
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
-        /* Blink off (output high) */
-		ESP_LOGI(TAG, "Turning off the LED");
-		ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO, 1));
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
+        /* Red LED */
+        ESP_LOGI(TAG, "Turning on the Red LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Red, 0));
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        ESP_LOGI(TAG, "Turning off the Red LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Red, 1));
+
+        /* Green LED */
+        ESP_LOGI(TAG, "Turning on the Green LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Green, 0));
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        ESP_LOGI(TAG, "Turning off the Green LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Green, 1));
+
+        /* Blue LED */
+        ESP_LOGI(TAG, "Turning on the Blue LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Blue, 0));
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        ESP_LOGI(TAG, "Turning off the Blue LED");
+        ESP_ERROR_CHECK(gpio_set_level(BLINK_GPIO_Blue, 1));
 	}
 }
 
